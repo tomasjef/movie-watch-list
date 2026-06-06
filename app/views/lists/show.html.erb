@@ -1,0 +1,13 @@
+<h1><%= @list.name %></h1>
+<ul>
+  <% @list.bookmarks.each do |bookmark| %>
+    <li><%= image_tag bookmark.movie.image_url, alt: bookmark.movie.title %></li>
+    <li><%= bookmark.movie.title %></li>
+    <li><%= bookmark.movie.rating %></li>
+    <li><%= bookmark.movie.overview %></li>
+    <li><%= bookmark.comment %></li>
+  <% end %>
+</ul>
+<%= link_to 'Delete Bookmark', bookmark_path(bookmark), method: :delete, confirm: 'Are you sure?', class: 'btn btn-danger' %>
+<%= link_to 'Add Movie', new_list_bookmark_path(@list), class: 'btn btn-secondary' %>
+<%= link_to 'Delete List', list_path(@list), method: :delete, confirm: 'Are you sure?', class: 'btn btn-danger' %>
