@@ -12,7 +12,6 @@ class ListsController < ApplicationController
 
   def show
     @list = current_user.lists.find(params[:id])
-    @bookmark = Bookmark.new
     @movies = params[:query].present? ? search_movies(params[:query]) : []
   end
 

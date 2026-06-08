@@ -1,21 +1,63 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  flex-wrap: nowrap;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.navbar-lewagon .container-fluid {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: .5rem;
+}
+
+.navbar-lewagon .container-fluid > ul.navbar-nav:last-child {
+  margin-left: auto;
 }
 
 .navbar-lewagon .navbar-brand {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
   gap: .6rem;
   font-size: 20px;
   font-weight: bold;
   color: #2b2d42;
+  white-space: nowrap;
 }
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+  flex-shrink: 0;
+}
+
+.navbar-lewagon .navbar-nav-primary {
+  flex-shrink: 0;
+  gap: .25rem;
+  margin-left: 1.25rem;
+}
+
+.navbar-lewagon .nav-link {
+  padding: .5rem .6rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 575.98px) {
+  .navbar-lewagon .navbar-brand .brand-text {
+    display: none;
+  }
+
+  .navbar-lewagon .nav-link {
+    padding: .5rem .35rem;
+    font-size: 13px;
+  }
+
+  .navbar-lewagon .navbar-nav-primary {
+    margin-left: .6rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar-lewagon .navbar-brand img {
+    width: 32px;
+  }
 }
