@@ -4,5 +4,5 @@ Rails.application.routes.draw do
     resources :bookmarks, only: [:create]
   end
   resources :bookmarks, only: [:destroy]
-  root to: "lists#index"
+  root to: "pages#home"
 end

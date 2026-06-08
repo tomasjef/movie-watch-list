@@ -1,4 +1,4 @@
-<div class="form-container">
+<div class="form-container form-container--narrow">
   <h1>Sign up</h1>
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -26,9 +26,10 @@
 
     <div class="form-actions">
       <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
-      <%= link_to "Back to all lists", lists_path, class: "btn btn-secondary" %>
     </div>
   <% end %>
 
-  <%= render "devise/shared/links" %>
+  <div class="auth-links">
+    <%= render "devise/shared/links" %>
+  </div>
 </div>
