@@ -1,2 +1,13 @@
-<h1>Lists#new</h1>
-<p>Find me in app/views/lists/new.html.erb</p>
+<div class="form-container">
+  <h1>Create a New Film Category List</h1>
+  <%= simple_form_for @list do |f| %>
+    <div class="form-group">
+      <%= f.input :name, label: false, placeholder: "List Name" %>
+      <%= f.input :image_url, label: false, placeholder: "Image URL" %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, "Create List", class: "btn btn-primary" %>
+      <%= link_to "Back to all lists", lists_path, class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+</div>

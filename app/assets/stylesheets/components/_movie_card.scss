@@ -1,0 +1,50 @@
+.card-trip {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: white;
+  border-radius: .5rem;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.card-trip-poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+.card-trip h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 .5rem;
+}
+
+.card-trip-overview {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0 0 .75rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-trip-comment {
+  font-size: 13px;
+  font-style: italic;
+  color: #555;
+  margin: 0 0 1rem;
+}
+
+.card-trip-infos {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 16px;
+}
+
+.card-trip-infos .btn {
+  margin-top: auto;
+}

@@ -1,0 +1,44 @@
+<div class="form-container">
+  <h1>Edit <%= resource_name.to_s.humanize %></h1>
+
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-group">
+      <%= f.input :email, label: false, placeholder: "Email", required: true, autofocus: true %>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+      <% end %>
+
+      <%= f.input :password,
+                  label: false,
+                  placeholder: "New password",
+                  hint: "leave it blank if you don't want to change it",
+                  required: false,
+                  input_html: { autocomplete: "new-password" } %>
+      <%= f.input :password_confirmation,
+                  label: false,
+                  placeholder: "Confirm new password",
+                  required: false,
+                  input_html: { autocomplete: "new-password" } %>
+      <%= f.input :current_password,
+                  label: false,
+                  placeholder: "Current password",
+                  hint: "we need your current password to confirm your changes",
+                  required: true,
+                  input_html: { autocomplete: "current-password" } %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Update", class: "btn btn-primary" %>
+      <%= link_to "Back to all lists", lists_path, class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+
+  <h2 class="section-title">Cancel my account</h2>
+
+  <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-sm" %></div>
+
+  <%= link_to "Back", :back, class: "btn btn-secondary mt-3" %>
+</div>

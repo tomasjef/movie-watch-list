@@ -1,13 +1,70 @@
-<h1><%= @list.name %></h1>
-<ul>
-  <% @list.bookmarks.each do |bookmark| %>
-    <li><%= image_tag bookmark.movie.image_url, alt: bookmark.movie.title %></li>
-    <li><%= bookmark.movie.title %></li>
-    <li><%= bookmark.movie.rating %></li>
-    <li><%= bookmark.movie.overview %></li>
-    <li><%= bookmark.comment %></li>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= @list.image_url %>');">
+  <div class="container">
+    <h1><%= @list.name %></h1>
+    <button class="btn btn-secondary mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#add-movie-panel" aria-expanded="<%= params[:query].present? %>" aria-controls="add-movie-panel">
+      Add Movie
+    </button>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <div class="collapse <%= 'show' if params[:query].present? %> mb-4" id="add-movie-panel">
+    <div class="add-movie-panel">
+      <h2 class="section-title mt-0">Search for a movie to add</h2>
+
+      <%= simple_form_for :search, url: list_path(@list), method: :get do |f| %>
+        <div class="search-form-control form-group">
+          <input class="form-control string required" type="text" name="query" id="query" value="<%= params[:query] %>" placeholder="Search by title..." />
+          <button name="button" type="submit" class="btn btn-flat">
+            <i class="fas fa-search"></i> Search
+          </button>
+        </div>
+      <% end %>
+
+      <% if @movies.present? %>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 mt-2">
+          <% @movies.each do |movie| %>
+            <div class="col">
+              <div class="card mb-4 shadow-sm">
+                <img src="<%= movie.poster_url %>" class="card-img-top" alt="<%= movie.title %>">
+                <div class="card-body">
+                  <p class="card-text"><%= movie.title %><br>⭐️ <%= number_with_precision(movie.rating, precision: 1) %></p>
+
+                  <%= simple_form_for Bookmark.new, url: list_bookmarks_path(@list) do |bf| %>
+                    <%= bf.hidden_field :movie_id, value: movie.id %>
+                    <%= bf.input :comment, label: false, placeholder: "Add a comment" %>
+                    <%= bf.button :submit, "Add to List", class: "btn btn-sm btn-outline-secondary" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% elsif params[:query].present? %>
+        <p class="text-muted mt-3 mb-0">No movies found for &ldquo;<%= params[:query] %>&rdquo;.</p>
+      <% end %>
+    </div>
+  </div>
+
+  <h2 class="section-title">Movies in this list</h2>
+
+  <% if @list.bookmarks.any? %>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 mb-4">
+      <% @list.bookmarks.each do |bookmark| %>
+        <div class="col">
+          <div class="card-trip">
+            <%= image_tag bookmark.movie.poster_url, alt: bookmark.movie.title, class: "card-trip-poster" %>
+            <div class="card-trip-infos">
+              <h2><%= bookmark.movie.title %> ⭐️ <%= number_with_precision(bookmark.movie.rating, precision: 1) %></h2>
+              <p class="card-trip-overview"><%= bookmark.movie.overview %></p>
+              <p class="card-trip-comment">"<%= bookmark.comment %>"</p>
+              <%= link_to 'Delete Bookmark', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm align-self-start' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-muted mb-4">No movies in this list yet — click "Add Movie" above to search and add one.</p>
   <% end %>
-</ul>
-<%= link_to 'Delete Bookmark', bookmark_path(bookmark), method: :delete, confirm: 'Are you sure?', class: 'btn btn-danger' %>
-<%= link_to 'Add Movie', new_list_bookmark_path(@list), class: 'btn btn-secondary' %>
-<%= link_to 'Delete List', list_path(@list), method: :delete, confirm: 'Are you sure?', class: 'btn btn-danger' %>
+</div>
