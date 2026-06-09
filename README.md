@@ -1,4 +1,4 @@
-# Watch List
+# Movie Watch List
 
 A Rails app for building and curating personal movie watch lists. Users sign up, create named lists (e.g. "Comedy", "Horror"), search for movies via TMDB, and bookmark them into a list with a personal comment.
 
