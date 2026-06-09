@@ -4,6 +4,10 @@
   padding: 150px 0;
 }
 
+.banner-default {
+  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1570385404967-fe4e1b48454b?q=80&w=2070&auto=format&fit=crop');
+}
+
 .banner h1 {
   margin: 0;
   color: white;

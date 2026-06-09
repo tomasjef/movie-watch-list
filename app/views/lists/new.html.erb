@@ -1,9 +1,13 @@
-<div class="form-container">
+<div class="form-container form-container--narrow">
   <h1>Create a New Film Category List</h1>
-  <%= simple_form_for @list do |f| %>
+  <%= simple_form_for @list, html: { multipart: true } do |f| %>
     <div class="form-group">
       <%= f.input :name, label: false, placeholder: "List Name" %>
-      <%= f.input :image_url, label: false, placeholder: "Image URL" %>
+      <div class="mb-3">
+        <%= label_tag :image, "Cover Image", class: "form-label fw-bold" %>
+        <%= file_field_tag :image, class: "form-control", accept: "image/*" %>
+        <div class="form-text text-muted">Leave blank to use a default image.</div>
+      </div>
     </div>
     <div class="form-actions">
       <%= f.button :submit, "Create List", class: "btn btn-primary" %>

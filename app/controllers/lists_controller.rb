@@ -21,10 +21,14 @@ class ListsController < ApplicationController
 
   def create
     @list = current_user.lists.new(list_params)
+    if params[:image].present?
+      result = Cloudinary::Uploader.upload(params[:image].path)
+      @list.image_url = result["secure_url"]
+    end
     if @list.save
       redirect_to @list
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

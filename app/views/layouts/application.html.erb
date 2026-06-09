@@ -27,8 +27,9 @@
     <%= render "shared/navbar" %>
 
     <% flash.each do |type, message| %>
-      <div class="alert alert-<%= type == "notice" ? "success" : "danger" %> mb-0 text-center" role="alert">
+      <div class="alert alert-<%= type == "notice" ? "success" : "danger" %> alert-dismissible fade show mb-0 text-center" role="alert">
         <%= message %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     <% end %>
 

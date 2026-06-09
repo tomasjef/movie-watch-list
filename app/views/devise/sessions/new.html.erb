@@ -1,28 +1,31 @@
-<div class="form-container form-container--narrow">
-  <h1>Log in</h1>
+<div class="auth-hero">
+  <div class="auth-hero-overlay"></div>
+  <div class="auth-hero-card">
+    <h1>Log in</h1>
 
-  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="form-group">
-      <%= f.input :email,
-                  label: false,
-                  placeholder: "Email",
-                  required: false,
-                  autofocus: true,
-                  input_html: { autocomplete: "email" } %>
-      <%= f.input :password,
-                  label: false,
-                  placeholder: "Password",
-                  required: false,
-                  input_html: { autocomplete: "current-password" } %>
-      <%= f.input :remember_me, label: "Remember me", as: :boolean if devise_mapping.rememberable? %>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-group">
+        <%= f.input :email,
+                    label: false,
+                    placeholder: "Email",
+                    required: false,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" } %>
+        <%= f.input :password,
+                    label: false,
+                    placeholder: "Password",
+                    required: false,
+                    input_html: { autocomplete: "current-password" } %>
+        <%= f.input :remember_me, label: "Remember me", as: :boolean if devise_mapping.rememberable? %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Log in", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+    <div class="auth-links">
+      <%= render "devise/shared/links" %>
     </div>
-
-    <div class="form-actions">
-      <%= f.button :submit, "Log in", class: "btn btn-primary" %>
-    </div>
-  <% end %>
-
-  <div class="auth-links">
-    <%= render "devise/shared/links" %>
   </div>
 </div>
