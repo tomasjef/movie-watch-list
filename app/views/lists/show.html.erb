@@ -25,11 +25,10 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 mt-2">
           <% @movies.each do |movie| %>
             <div class="col">
-              <div class="card mb-4 shadow-sm">
-                <img src="<%= movie.poster_url %>" class="card-img-top" alt="<%= movie.title %>">
-                <div class="card-body">
-                  <p class="card-text"><%= movie.title %><br>⭐️ <%= number_with_precision(movie.rating, precision: 1) %></p>
-
+              <div class="card-trip">
+                <img src="<%= movie.poster_url %>" alt="<%= movie.title %>" class="card-trip-poster">
+                <div class="card-trip-infos">
+                  <h2><%= movie.title %> ⭐️ <%= number_with_precision(movie.rating, precision: 1) %></h2>
                   <%= simple_form_for Bookmark.new, url: list_bookmarks_path(@list) do |bf| %>
                     <%= bf.hidden_field :movie_id, value: movie.id %>
                     <%= bf.input :comment, label: false, placeholder: "Add a comment" %>

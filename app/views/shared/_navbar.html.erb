@@ -7,10 +7,10 @@
 
     <ul class="navbar-nav navbar-nav-primary flex-row">
       <% if user_signed_in? %>
-        <li class="nav-item active">
+        <li class="nav-item <%= 'active' if current_page?(lists_path) %>">
           <%= link_to "My Lists", lists_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
+        <li class="nav-item <%= 'active' if current_page?(new_list_path) %>">
           <%= link_to "New List", new_list_path, class: "nav-link" %>
         </li>
       <% end %>

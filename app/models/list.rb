@@ -2,7 +2,7 @@ class List < ApplicationRecord
   belongs_to :user
   has_many :bookmarks, dependent: :destroy
   has_many :movies, through: :bookmarks
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { scope: :user_id }
 
   # 1. Runs before validation to catch blank fields
   before_validation :set_default_image, on: :create
